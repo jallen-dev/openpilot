@@ -1,6 +1,6 @@
 # OpenPilot
 
-OpenPilot is an open-source AI programming assistant for VS Code. Connect your editor to a variety of different Large Language Models including those from OpenAI and Google. Ask the LLM questions about your code base, generate new code snippets, or make changes to your existing files.
+OpenPilot is an open-source AI programming assistant as an [extension to Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=jallen-dev.openpilot). Connect your editor to a variety of different Large Language Models including those from OpenAI and Google. Ask the LLM questions about your code base, generate new code snippets, or make changes to your existing files.
 
 ![Using OpenPilot](using_openpilot.gif)
 
