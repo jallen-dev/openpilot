@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="w-full h-full"
+  >
+    <div>
+      <div
+        class="p-4 overflow-x-scroll"
+      >
+        <span>
+          OpenPilot: 
+        </span>
+        <p>
+          Welcome to OpenPilot! You first need to set your API keys.
+        </p>
+        
+
+        <p>
+          Click the ••• menu in the top right of this panel and select "Set API Key."
+        </p>
+        
+
+        <p>
+          To create a new OpenAI key, visit 
+          <a
+            href="https://platform.openai.com/account/api-keys"
+          >
+            https://platform.openai.com/account/api-keys
+          </a>
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="p-4 bg-vscode-textBlockQuote-background border-t border-b border-zinc-500"
+      >
+        <span>
+          You: 
+        </span>
+        <span>
+          user chat
+        </span>
+      </div>
+    </div>
+    <div>
+      <div
+        class="p-4 overflow-x-scroll"
+      >
+        <span>
+          GPT 3.5 Turbo: 
+        </span>
+        <p>
+          model chat
+        </p>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;

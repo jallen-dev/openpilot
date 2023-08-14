@@ -1,0 +1,198 @@
+{
+  "name": "openpilot",
+  "displayName": "OpenPilot",
+  "description": "VSCode coding assistant. Connect to a variety of chat models.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jallen-dev/openpilot"
+  },
+  "bugs": {
+    "url": "https://github.com/jallen-dev/openpilot/issues"
+  },
+  "author": {
+    "name": "Justin Allen",
+    "email": "jallen@jallen.dev"
+  },
+  "publisher": "jallen-dev",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/main.js",
+  "activationEvents": [],
+  "contributes": {
+    "configuration": {
+      "title": "OpenPilot",
+      "properties": {
+        "openpilot.includeFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically include files for context to the LLM."
+        },
+        "openpilot.produceDiffs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Generate diffs from the LLM's suggested code changes."
+        },
+        "openpilot.lastIndexed": {
+          "type": "number",
+          "default": 0,
+          "description": "Last time the workspace was indexed."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "openpilot.clearChat",
+        "title": "Clear",
+        "icon": {
+          "light": "./media/icons/light/clear-all.svg",
+          "dark": "./media/icons/dark/clear-all.svg"
+        }
+      },
+      {
+        "command": "openpilot.getCurrentFile",
+        "title": "Get Current File"
+      },
+      {
+        "command": "openpilot.indexWorkspace",
+        "title": "Index Workspace",
+        "enablement": "openpilot:hasSetOpenaiKey"
+      },
+      {
+        "command": "openpilot.deleteVectorDb",
+        "title": "Delete Vector DB"
+      },
+      {
+        "command": "openpilot.selectModel",
+        "title": "Switch Model"
+      },
+      {
+        "command": "openpilot.setApiKey",
+        "title": "Set API Key"
+      },
+      {
+        "command": "openpilot.includeFiles",
+        "title": "Include Files for Context"
+      },
+      {
+        "command": "openpilot.excludeFiles",
+        "title": "✓ Include Files for Context"
+      },
+      {
+        "command": "openpilot.produceDiffs",
+        "title": "Produce Diffs (experimental)"
+      },
+      {
+        "command": "openpilot.dontProduceDiffs",
+        "title": "✓ Produce Diffs (experimental)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "openpilot.clearChat",
+          "group": "navigation",
+          "when": "view == openpilotView"
+        },
+        {
+          "command": "openpilot.selectModel",
+          "group": "openpilot.actions@1",
+          "when": "view == openpilotView"
+        },
+        {
+          "command": "openpilot.setApiKey",
+          "group": "openpilot.settings@1",
+          "when": "view == openpilotView"
+        },
+        {
+          "command": "openpilot.indexWorkspace",
+          "group": "openpilot.settings@2",
+          "when": "view == openpilotView"
+        },
+        {
+          "command": "openpilot.includeFiles",
+          "group": "openpilot.toggles@1",
+          "when": "view == openpilotView && !openpilot:includingFiles"
+        },
+        {
+          "command": "openpilot.excludeFiles",
+          "group": "openpilot.toggles@1",
+          "when": "view == openpilotView && openpilot:includingFiles"
+        },
+        {
+          "command": "openpilot.produceDiffs",
+          "group": "openpilot.toggles@2",
+          "when": "view == openpilotView && !openpilot:producingDiffs"
+        },
+        {
+          "command": "openpilot.dontProduceDiffs",
+          "group": "openpilot.toggles@2",
+          "when": "view == openpilotView && openpilot:producingDiffs"
+        }
+      ]
+    },
+    "views": {
+      "openpilot": [
+        {
+          "id": "openpilotView",
+          "type": "webview",
+          "name": "OpenPilot"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "openpilot",
+          "title": "OpenPilot",
+          "icon": "media/icons/dark/openpilot.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "install:all": "npm install && cd webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run start",
+    "build:webview": "cd webview-ui && npm run build",
+    "test:webview": "cd webview-ui && npm run test",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "prettier": "prettier --write ./src --write ./webview-ui"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/glob": "^8.1.0",
+    "@types/lodash": "^4.14.197",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.79.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "@vscode/test-electron": "^2.3.0",
+    "esbuild": "^0.19.1",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "prettier": "^3.0.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@cjs-exporter/globby": "^13.1.3",
+    "chromadb": "^1.5.6",
+    "faiss-node": "^0.2.2",
+    "fastest-levenshtein": "^1.0.16",
+    "langchain": "^0.0.100",
+    "lodash": "^4.17.21"
+  }
+}

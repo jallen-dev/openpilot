@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      Apply suggested file changes:
+    </h2>
+    <button>
+      file1
+    </button>
+    <button>
+      file2
+    </button>
+  </div>
+</DocumentFragment>
+`;

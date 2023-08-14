@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  margin: 0;
+}
+
+a {
+  color: var(--vscode-textLink-activeForeground);
+}

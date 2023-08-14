@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-2 py-4"
+  >
+    <span>
+      Files to include:
+    </span>
+    <div
+      class="flex flex-row gap-4"
+    >
+      <vscode-checkbox
+        aria-checked="false"
+        aria-disabled="false"
+        aria-label="Checkbox"
+        aria-required="false"
+        role="checkbox"
+        tabindex="0"
+      >
+        <input
+          slot="form-associated-proxy"
+          style="display: none;"
+          type="checkbox"
+          value="on"
+        />
+      </vscode-checkbox>
+      <div
+        class="grow"
+      >
+        <a
+          href="#"
+          title="src/file1.ts"
+        >
+          src/file1.ts
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex flex-row gap-4"
+    >
+      <vscode-checkbox
+        aria-checked="false"
+        aria-disabled="false"
+        aria-label="Checkbox"
+        aria-required="false"
+        role="checkbox"
+        tabindex="0"
+      >
+        <input
+          slot="form-associated-proxy"
+          style="display: none;"
+          type="checkbox"
+          value="on"
+        />
+      </vscode-checkbox>
+      <div
+        class="grow"
+      >
+        <a
+          href="#"
+          title="src/file2.ts"
+        >
+          src/file2.ts
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

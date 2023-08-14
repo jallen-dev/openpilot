@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <textarea
+    class="w-full p-2 resize-none rounded-md"
+    disabled=""
+    placeholder="Set your API keys in the settings."
+    style="height: 0px;"
+  />
+</DocumentFragment>
+`;
