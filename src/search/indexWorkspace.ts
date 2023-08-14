@@ -10,8 +10,6 @@ import * as vscode from "vscode"
 import { getAllFilesInDirectory, getWorkspacePath } from "../utils/workspace"
 import vectorStore from "./VectorStore"
 
-const FILES_BATCH_SIZE = 50
-
 export async function indexWorkspace(
   token: vscode.CancellationToken,
   onProcessed: (total: number) => void,
@@ -41,13 +39,18 @@ export async function indexWorkspace(
 
     const splitter = splitterForLanguage(language)
 
-    for (let i = 0; i < filesMetadata.length; i += FILES_BATCH_SIZE) {
+    const filesBatchSize =
+      (vscode.workspace
+        .getConfiguration("openpilot")
+        .get("index.filesBatchSize") as number) ?? 20
+
+    for (let i = 0; i < filesMetadata.length; i += filesBatchSize) {
       if (canceled) {
         canceled = false
         return { success: false, message: "Canceled" }
       }
 
-      const batchedFilesMetadata = filesMetadata.slice(i, i + FILES_BATCH_SIZE)
+      const batchedFilesMetadata = filesMetadata.slice(i, i + filesBatchSize)
       onProcessed(batchedFilesMetadata.length)
 
       const filesContents = await Promise.all(

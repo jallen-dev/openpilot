@@ -42,6 +42,11 @@
           "type": "number",
           "default": 0,
           "description": "Last time the workspace was indexed."
+        },
+        "openpilot.index.filesBatchSize": {
+          "type": "number",
+          "default": 20,
+          "description": "Maximum number of files to process at a time."
         }
       }
     },
@@ -193,6 +198,7 @@
     "chromadb": "^1.5.6",
     "faiss-node": "^0.2.2",
     "fastest-levenshtein": "^1.0.16",
+    "isbinaryfile": "^5.0.0",
     "langchain": "^0.0.100",
     "lodash": "^4.17.21"
   }

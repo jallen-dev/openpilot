@@ -1,4 +1,5 @@
 import { globby } from "@cjs-exporter/globby"
+import { isBinaryFileSync } from "isbinaryfile"
 import { workspace } from "vscode"
 
 const FILES_TO_IGNORE = ["**/package-lock.json"]
@@ -27,12 +28,13 @@ export async function getAllFilesInDirectory(
     ignore: FILES_TO_IGNORE,
     stats: Boolean(modifiedSince)
   })
+  const allTextFiles = allFiles.filter((file) => !isBinaryFileSync(file.path))
 
   if (modifiedSince) {
-    return allFiles.filter((file) => file.stats!.mtimeMs > modifiedSince)
+    return allTextFiles.filter((file) => file.stats!.mtimeMs > modifiedSince)
   }
 
-  return allFiles
+  return allTextFiles
 }
 
 export function getWorkspacePath() {
